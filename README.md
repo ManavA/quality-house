@@ -2,13 +2,23 @@
 
 Build a House of Quality from Python or JSON. Score engineering responses against weighted criteria, draw the matrix and correlation roof, and carry scores into the next design stage.
 
+## Install
+
+With Python 3.10 or later, install from [PyPI](https://pypi.org/project/quality-house/).
+
+```sh
+python -m pip install quality-house
+```
+
 ## Run an example
 
-Install the package from the project root with \`python -m pip install .\`, then run the example from the same directory.
+Clone the repository and run these commands from its root.
 
-    quality-house score examples/reusable-case.json
-    quality-house render examples/reusable-case.json case.pdf --bars
-    python examples/deployment.py
+```sh
+quality-house score examples/reusable-case.json
+quality-house render examples/reusable-case.json case.pdf --bars
+python examples/deployment.py
+```
 
 Use a PDF, SVG, or PNG output filename. Add `--no-roof` to hide the roof. Cell strengths are 0 (none), 1 (weak), 3 (moderate), and 9 (strong). Bar lengths scale to the highest score. The share under each score is its fraction of the total.
 
