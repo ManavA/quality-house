@@ -1,0 +1,23 @@
+{
+  "title": "Reusable field case",
+  "criteria": [
+    {"id": "open", "label": "Open with gloved hands", "weight": 5},
+    {"id": "clean", "label": "Clean after field use", "weight": 3},
+    {"id": "protect", "label": "Keep out rain", "weight": 4}
+  ],
+  "responses": [
+    {"id": "latch", "label": "Latch force", "target": "Below 10 N", "direction": "decrease"},
+    {"id": "seal", "label": "Seal compression", "target": "2 mm", "direction": "target"},
+    {"id": "liner", "label": "Liner removal", "target": "Under 30 s", "direction": "decrease"}
+  ],
+  "matrix": [
+    [9, 3, 0],
+    [1, 1, 9],
+    [3, 9, 0]
+  ],
+  "correlations": [
+    {"first": "latch", "second": "seal", "strength": -1, "note": "Higher compression can raise opening force."},
+    {"first": "seal", "second": "liner", "strength": 1, "note": "A removable liner exposes the seal for cleaning."}
+  ],
+  "benchmarks": [{"label": "Current case", "ratings": [3, 2, 4]}]
+}

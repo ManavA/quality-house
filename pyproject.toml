@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quality-house"
+version = "0.1.0"
+description = "Build, score, and draw a House of Quality."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [{name = "Manav Agarwal"}]
+dependencies = ["matplotlib>=3.7"]
+keywords = ["qfd", "house-of-quality", "engineering", "requirements"]
+classifiers = ["Topic :: Scientific/Engineering :: Visualization"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+quality-house = "quality_house.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
