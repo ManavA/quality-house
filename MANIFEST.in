@@ -1,2 +1,3 @@
-recursive-include examples *.json *.py
+recursive-include examples *.csv *.json *.py
 recursive-include tests *.py
+global-exclude ._*

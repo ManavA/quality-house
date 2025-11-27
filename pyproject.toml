@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "quality-house"
-version = "0.1.0"
+version = "0.2.0"
 description = "Build, score, and draw a House of Quality."
 readme = "README.md"
 requires-python = ">=3.10"

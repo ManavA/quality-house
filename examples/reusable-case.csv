@@ -1,0 +1,8 @@
+criterion_id,criterion,weight,latch: Latch force,seal: Seal compression,liner: Liner removal,context [As-is comparison]
+open,Open with gloved hands,5,9,3,,High latch force
+clean,Clean after field use,3,1,1,9,Grit collects under liner
+protect,Keep out rain,4,3,9,,Water enters at corners
+,,,,,,
+,Direction,,decrease,target,decrease,
+,Target,,Below 10 N,2 mm,Under 30 s,
+,Current measurement,,14 N,1 mm,46 s,

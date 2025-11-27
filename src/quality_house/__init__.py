@@ -1,5 +1,6 @@
 """Model, score, and draw Houses of Quality."""
 
+from .csvio import load_csv
 from .drawing import render
 from .jsonio import load, save
 from .model import Benchmark, Correlation, Criterion, House, Response
@@ -16,6 +17,7 @@ __all__ = [
     "Revision",
     "compare",
     "load",
+    "load_csv",
     "render",
     "save",
 ]

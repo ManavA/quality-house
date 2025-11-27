@@ -24,8 +24,9 @@ def load(path: str | Path) -> House:
         )
         benchmarks = tuple(Benchmark(**item) for item in data.get("benchmarks", []))
         options = {"correlations": correlations, "benchmarks": benchmarks}
-        if "title" in data:
-            options["title"] = data["title"]
+        for field in ("title", "response_rows", "criterion_column"):
+            if field in data:
+                options[field] = data[field]
         if "matrix" in data:
             return House(criteria, responses, data["matrix"], **options)
         return House.from_relationships(

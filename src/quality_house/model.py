@@ -107,6 +107,8 @@ class House:
     correlations: tuple[Correlation, ...] = ()
     benchmarks: tuple[Benchmark, ...] = ()
     title: str = "House of Quality"
+    response_rows: tuple[tuple[str, tuple[str, ...]], ...] = ()
+    criterion_column: tuple[str, tuple[str, ...]] | None = None
 
     def __post_init__(self) -> None:
         _name(self.title, "title")
@@ -115,6 +117,19 @@ class House:
         matrix = tuple(tuple(row) for row in self.matrix)
         if not self.criteria or not self.responses:
             raise ValueError("a house needs at least one criterion and one response")
+        rows = tuple(
+            _annotation(item, len(self.responses), "response")
+            for item in self.response_rows
+        )
+        if len(dict(rows)) != len(rows):
+            raise ValueError("duplicate response row heading")
+        object.__setattr__(self, "response_rows", rows)
+        if self.criterion_column is not None:
+            object.__setattr__(
+                self,
+                "criterion_column",
+                _annotation(self.criterion_column, len(self.criteria), "criterion"),
+            )
         _indices(self.criteria)
         responses = _indices(self.responses)
         if len(matrix) != len(self.criteria) or any(
@@ -220,3 +235,16 @@ def _indices(items: Sequence[Criterion | Response]) -> dict[str, int]:
             raise ValueError(f"duplicate ID: {item.id}")
         result[item.id] = index
     return result
+
+
+def _annotation(
+    item: tuple[str, Sequence[str]], count: int, field: str
+) -> tuple[str, tuple[str, ...]]:
+    heading, values = item
+    _name(heading, f"{field} annotation heading")
+    if isinstance(values, (str, bytes)) or not isinstance(values, Sequence):
+        raise ValueError(f"{field} annotation values must be a sequence of strings")
+    values = tuple(values)
+    if len(values) != count or any(not isinstance(value, str) for value in values):
+        raise ValueError(f"annotation {heading!r} needs one text value per {field}")
+    return heading, values
